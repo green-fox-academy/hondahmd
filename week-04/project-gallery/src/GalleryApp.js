@@ -8,23 +8,28 @@ class GalleryApp extends React.Component {
         super();
         this.state = {
             imageList: ImageList,
-            viewerImgIndex: 0
+            viewerImgIndex: 0,
+            thumbnailImgPopIndex: undefined
         };
         this.slideLeft = this.slideLeft.bind(this);
         this.slideRight = this.slideRight.bind(this);
         this.clickOnThumbnail = this.clickOnThumbnail.bind(this);
+        this.moveOverThumbnail = this.moveOverThumbnail.bind(this);
+        this.moveOutThumbnail = this.moveOutThumbnail.bind(this);
     }
 
     slide(edge, step) {
         if (this.state.viewerImgIndex === edge) {
             this.setState({
                 imageList: this.state.imageList,
-                viewerImgIndex: this.state.imageList.length - 1 - edge
+                viewerImgIndex: this.state.imageList.length - 1 - edge,
+                thumbnailImgPopIndex: this.state.thumbnailImgPopIndex
             })
         } else {
             this.setState({
                 imageList: this.state.imageList,
-                viewerImgIndex: this.state.viewerImgIndex + step
+                viewerImgIndex: this.state.viewerImgIndex + step,
+                thumbnailImgPopIndex: this.state.thumbnailImgPopIndex
             })
         }
     }
@@ -38,11 +43,29 @@ class GalleryApp extends React.Component {
     }
 
     clickOnThumbnail(event) {
-        if (event.target.id.indexOf('tbImg') === -1 || Number(event.target.id.split(' ')[1]) > this.state.imageList.length - 1) {return;}
+        if (event.target.id.indexOf('tbImg') === -1 || Number(event.target.id.split(' ')[1]) > this.state.imageList.length - 1) { return; }
         this.setState({
             imageList: this.state.imageList,
-            viewerImgIndex: Number(event.target.id.split(' ')[1])
+            viewerImgIndex: Number(event.target.id.split(' ')[1]),
+            thumbnailImgPopIndex: this.state.thumbnailImgPopIndex
         })
+    }
+
+    moveOverThumbnail(event) {
+        if (event.target.id.indexOf('tbImg') === -1 || Number(event.target.id.split(' ')[1]) > this.state.imageList.length - 1 || Number(event.target.id.split(' ')[1]) === this.state.viewerImgIndex) { return; }
+        this.setState({
+            imageList: this.state.imageList,
+            viewerImgIndex: this.state.viewerImgIndex,
+            thumbnailImgPopIndex: Number(event.target.id.split(' ')[1])
+        });
+    }
+
+    moveOutThumbnail() {
+        this.setState({
+            imageList: this.state.imageList,
+            viewerImgIndex: this.state.viewerImgIndex,
+            thumbnailImgPopIndex: undefined
+        });
     }
 
     render() {
@@ -61,17 +84,23 @@ class GalleryApp extends React.Component {
                             </div>
                         </div>
                         <div class="slide-button-container" onClick={this.slideRight}>
-                            <img src='arrow.svg' className={galleryStyle.rightSlideBar}/>
+                            <img src='arrow.svg' className={galleryStyle.rightSlideBar} />
                         </div>
                     </div>
-                    <div className="thumbnail-bar-container" onClick={this.clickOnThumbnail}>
-                        {this.state.imageList.map((image, index) => 
-                        <div className={index === this.state.viewerImgIndex ? galleryStyle.selectedThumbnail : ''}>
-                            {index === this.state.viewerImgIndex && <div className={galleryStyle.triangleDiv}/>}
-                            <div className="thumbnail-img-container">
-                                <img src={image.getTbImgLink()} key={"tbImg" + index} id={"tbImg " + index} alt={image.getWorkName()}
-                                className={galleryStyle.thumbnailImg} />
-                            </div>
+                    <div className="thumbnail-bar-container" onClick={this.clickOnThumbnail} onMouseOver={this.moveOverThumbnail} onMouseOut={this.moveOutThumbnail}>
+                        {this.state.imageList.map((image, index) =>
+                            <div className={index === this.state.viewerImgIndex ? galleryStyle.selectedThumbnail : galleryStyle.unselectedThumbnail} key={"tbImg" + index}>
+                                {index === this.state.thumbnailImgPopIndex &&
+                                    <div className={galleryStyle.popUpThumbnailNameContainer}>
+                                        <article className={galleryStyle.popUpThumbnailName} >{image.getWorkName()}</article>
+                                        <div className={galleryStyle.popUpThumbnailTriangle}  />
+                                    </div>
+                                }
+                                <div className={galleryStyle.triangleDiv} hidden={index === this.state.viewerImgIndex ? false : true} />
+                                <div className="thumbnail-img-container">
+                                    <img src={image.getTbImgLink()} id={"tbImg " + index} alt={image.getWorkName()}
+                                        className={galleryStyle.thumbnailImg} />
+                                </div>
                             </div>
                         )}
                     </div>
