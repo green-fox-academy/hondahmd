@@ -29,7 +29,7 @@ class SlideButton extends React.Component {
         return (
             <>
                 <div className="slide-button-container" onClick={this.props.position === "right" ? this.slideRight : this.slideLeft}>
-                    <img src="./arrow.svg" className={this.props.position === "right" ? slideButtonStyle.rightSlideButton : ''} />
+                    <img src="../arrow.svg" className={this.props.position === "right" ? slideButtonStyle.rightSlideButton : ''} />
                 </div>
             </>
         )

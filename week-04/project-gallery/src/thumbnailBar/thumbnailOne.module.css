@@ -21,6 +21,7 @@
 
 .unselectedThumbnail {
     margin: 0px;
+    transition-duration: 500ms;
 }
 
 .unselectedThumbnail:hover {
