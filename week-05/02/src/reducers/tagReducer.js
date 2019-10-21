@@ -14,6 +14,7 @@ const tagReducer = (state = [], action) => {
             return state;
         case 'REMOVE_TAG':
             if (state.indexOf(action.payload.tagName) !== -1) {
+                // working code
                 let newTags = new Array();
                 state.forEach(tag => {
                     if (tag !== action.payload.tagName) {
@@ -21,6 +22,11 @@ const tagReducer = (state = [], action) => {
                     }
                 })
                 return newTags;
+
+                /* not working code
+                state.splice(state.indexOf(action.payload.tagName, 1);
+                return state;
+                */
             }
             return state;
         case 'REMOVE_ALL':
