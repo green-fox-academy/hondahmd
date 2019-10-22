@@ -1,5 +1,11 @@
+.wholeContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
 .selectedThumbnail {
-    margin-top: -25px;
+    margin-bottom: 10px;
 }
 
 .thumbnailImg {
@@ -21,25 +27,28 @@
 
 .unselectedThumbnail {
     margin: 0px;
-    transition-duration: 500ms;
+    transition-duration: 200ms;
 }
 
 .unselectedThumbnail:hover {
-    margin-top: -41px;
+    margin-bottom: 10px;
 }
 
 .popUpThumbnailNameContainer {
     margin-left: -20px;
     margin-right: -20px;
-    margin-bottom: -20px;
+    margin-bottom: -12px;
+    width: 150px;
+    height: 40px;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center; 
+    z-index: 2;
 }
 
 .popUpThumbnailName {
-    background-color: rgba(33, 32, 32);
+    background-color: black;
     width: 150px;
     height: 26px;
     border-radius: 4px;
@@ -54,4 +63,8 @@
     height: 0px;
     border: 14px solid;
     border-color: rgba(33, 32, 32)  transparent transparent;
+}
+
+.hide {
+    display: none;
 }

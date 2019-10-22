@@ -1,6 +1,7 @@
 import React from 'react';
 
 import tnOneStyle from './thumbnailOne.module.css';
+import PopUpBubble from './popUpBubble';
 
 class ThumbnailOne extends React.Component {
     constructor(props) {
@@ -34,24 +35,21 @@ class ThumbnailOne extends React.Component {
     }
 
     render() {
-        return(
+        return (
             <>
-                <div className={this.props.selected ? tnOneStyle.selectedThumbnail : tnOneStyle.unselectedThumbnail} onClick={this.selectImg} onMouseOver={this.popImg} onMouseOut={this.unpopImg}>
-                    {this.state.poped && 
-                        <div className={tnOneStyle.popUpThumbnailNameContainer}>
-                            <article className={tnOneStyle.popUpThumbnailName}>{this.props.imgInfo.getWorkName()}</article>
-                            <div className={tnOneStyle.popUpThumbnailTriangle}  /> 
+                <div className={tnOneStyle.wholeContainer}>
+                    <PopUpBubble imgInfo={this.props.imgInfo} poped={this.state.poped}/>
+                    <div className={this.props.selected ? tnOneStyle.selectedThumbnail : tnOneStyle.unselectedThumbnail} onClick={this.selectImg} onMouseOver={this.popImg} onMouseOut={this.unpopImg}>
+                        <div className={tnOneStyle.triangleDiv} hidden={!this.props.selected} />
+                        <div className="thumbnail-img-container">
+                            <img src={this.props.imgInfo.getTbImgLink()} id={"tbImg " + this.index} alt={this.props.imgInfo.getWorkName()}
+                                className={tnOneStyle.thumbnailImg} />
                         </div>
-                    }
-                    <div className={tnOneStyle.triangleDiv} hidden={!this.props.selected} />
-                    <div className="thumbnail-img-container">
-                        <img src={this.props.imgInfo.getTbImgLink()} id={"tbImg " + this.index} alt={this.props.imgInfo.getWorkName()}
-                        className={tnOneStyle.thumbnailImg}/>
                     </div>
                 </div>
             </>
         )
-    }    
+    }
 }
 
 export default ThumbnailOne;
