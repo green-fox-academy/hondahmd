@@ -41,7 +41,7 @@ class TodoList extends React.Component {
     }
 
     deleteIssue(event) {
-        let copyState = this.state;
+        let copyState = this.deepCopyState();
         delete copyState[event.target.id.substr(0, event.target.id.length - 7)];
         this.setState(copyState);
     }
