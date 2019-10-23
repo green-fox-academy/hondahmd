@@ -3,6 +3,7 @@
 const numberReducer = (state = 0, action) => {
     switch (action.type) {
         case 'INCREASE':
+                console.log(action.payload.number)
             return (Number(state) + Number(action.payload.number))
         case 'DECREASE':
             return (Number(state) - 1)

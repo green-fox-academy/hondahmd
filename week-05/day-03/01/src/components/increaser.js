@@ -5,10 +5,12 @@ import { increaseAction } from '../actions/numberActions';
 
 function delayIncrease(number, delay) {
     return async (dispatch) => {
-        await setTimeout(() => {
-            
-        }, delay);
-        dispatch(increaseAction(number));
+        let data = await new Promise(resolve => {
+            setTimeout(() => {
+                resolve(number);
+            }, delay);
+        })
+        dispatch(increaseAction(data));
     }
 }
 
