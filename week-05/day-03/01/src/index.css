@@ -1,0 +1,12 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.number-operation-container{
+  display: flex;
+}
+
+.block-container {
+  width: 25%;
+}
