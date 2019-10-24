@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/homeStyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <% for (let forecast of forecasts) {%>
+        <div class="forecast-container" onClick="redirect('<%= forecast.city %>')">
+            <div class="district-container">
+                <p class="city"><%= forecast.city %></p>
+                <p class="country"><%= forecast.location %></p>
+            </div>
+            <div class="temp-container">
+                <p><%= forecast.weather[0].temp %>&#8451</p>
+            </div>
+            <div class="icon-container">
+                <img src="<%= icons[(forecast.weather[0].icon)] %>" class="icon">
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <script>
+        function redirect(address) {
+            window.location = `/cities/${address}`;
+        }
+    </script>
+</body>
+
+</html>

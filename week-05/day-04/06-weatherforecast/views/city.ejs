@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/cityStyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1><%= cityInfo[0].city %></h1>
+        <div class="info-container">
+            <% for (let day of cityInfo[0].weather) {%>
+            <div class="forecast-container">
+                <div class="icon-container">
+                    <img src="<%= icons[day.icon] %>" class="icon">
+                </div>
+                <div class="temp-container">
+                    <p class="temp"><%= day.temp %>&#8451</p>
+                </div>
+                <div class="description-container">
+                    <p class="message"><%= day.message %></p>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+
+</body>
+
+</html>
