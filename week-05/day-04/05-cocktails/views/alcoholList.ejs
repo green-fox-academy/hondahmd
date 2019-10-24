@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cocktails</h1>
+        <header class="header-container">
+            <div class="header-name-container"><p class="header-font">NAME</p></div>
+            <div class="header-price-container"><p class="header-font">PRICE</p></div>
+        </header>
+        <% for (let alcohol of cocktails) { %>
+        <li class="line-container">
+            <div class="info-container">
+                <div class="name-container">
+                        <p class="alcoholName"><%=  alcohol.name %></p>
+                        <p class="non-alcohol"><%= alcohol.isAlcoholic ? '' : '(non-alcoholic)' %></p>
+                </div>
+                <p class="alcoholContains"><%=  alcohol.contains %> </p>
+            </div>
+            <div class="price-container">
+                <p class="price-font"><%=  alcohol.price %>Ft</p>
+            </div>
+        </li>
+        <% } %>
+    </div>
+</body>
+
+</html>
