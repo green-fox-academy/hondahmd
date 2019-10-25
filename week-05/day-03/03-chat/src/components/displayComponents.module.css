@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.messageBoxContainer {
+    background-color: #EDEDED;
+    padding: 20px;
+    margin: 20px;
+    width: 400px;
+    height: 100px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.messageTitleContainer {
+    margin: 10px;
+    height: 20%;
+    display: flex;
+    align-items: flex-end;    
+}
+
+.messageContentContainer {
+    height: 80%;
+}
+
+.messageName {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.message {
+    margin: 10px;
+}
