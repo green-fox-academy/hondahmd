@@ -13,6 +13,7 @@
 }
 
 .forecast-container {
+    background-color: white;
     margin: 20px;
     width: 600px;
     height: 200px;
