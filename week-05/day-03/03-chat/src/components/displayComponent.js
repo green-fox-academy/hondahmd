@@ -11,18 +11,20 @@ function DisplayComponent({ messages, getChatMessage }) {
 
     return (
         <>
-            <h1>Chat Room</h1>
-            {messages !== undefined && messages.messages.map((message, index) => 
-                <div className={displayStyle.messageBoxContainer} key={'messageBox ' + index}>
-                    <div className={displayStyle.messageTitleContainer}>
-                        <p className={displayStyle.messageName}>{message.user}</p>
-                        <p>{message.createdAt}</p>
+            <div className={displayStyle.messagesRoomContainer}>
+                <h1>Chat Room</h1>
+                {messages !== undefined && messages.messages.map((message, index) =>
+                    <div className={displayStyle.messageBoxContainer} key={'messageBox ' + index}>
+                        <div className={displayStyle.messageTitleContainer}>
+                            <p className={displayStyle.messageName}>{message.user}</p>
+                            <p>{message.createdAt}</p>
+                        </div>
+                        <div className={displayStyle.messageContentContainer}>
+                            <p className={displayStyle.message}>{message.text}</p>
+                        </div>
                     </div>
-                    <div className={displayStyle.messageContentContainer}>
-                        <p className={displayStyle.message}>{message.text}</p>
-                    </div>
-                </div>
-            )}
+                )}
+            </div>
         </>
     )
 }
