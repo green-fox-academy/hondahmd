@@ -7,10 +7,10 @@ import * as serviceWorker from './serviceWorker';
 
 import './index.css';
 import IndexComponent from './components/index';
-import {messageReducer} from './reducers/messageReducer';
+import {getMessageReducer} from './reducers/messageReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(messageReducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(getMessageReducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={store}>
