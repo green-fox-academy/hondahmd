@@ -36,5 +36,6 @@ export function sendMessage(user, text) {
         });
         let data = await response.json();
         dispatch(sendMessageAction([data]));
+        dispatch(getMessage());
     }
 }
