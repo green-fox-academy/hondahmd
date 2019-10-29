@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Book Info</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Publisher</th>
+            <th>Price</th>
+        </tr>
+        <% for (let info of bookInfo) { %>
+            <tr>
+                <td><%= info.book_name %></td>
+                <td><%= info.aut_name %></td>
+                <td><%= info.cate_descrip %></td>
+                <td><%= info.pub_name %></td>
+                <td><%= info.book_price %></td>
+            </tr>
+        <% } %>
+    </table>
+  </body>
+</html>
