@@ -9,9 +9,16 @@ class TodoList extends React.Component {
     constructor() {
         super();
         this.state = {};
+        this.domain = 'http://dark-blood-74845.herokuapp.com/api/todos/';
         this.addIssue = this.addIssue.bind(this);
         this.setIssue = this.setIssue.bind(this);
         this.deleteIssue = this.deleteIssue.bind(this);
+    }
+
+    componentWillMount() {
+        fetch(this.domain)
+            .then(response => response.json())
+            .then(data => { this.setState(data) });
     }
 
     deepCopyState() {
@@ -30,19 +37,46 @@ class TodoList extends React.Component {
             return;
         }
         let copyState = this.deepCopyState();
-        copyState[inputIssue] = false;
+        const keys = Object.keys(this.state);
+        const newIndex = Number(keys[keys.length - 1]) + 1;
+        copyState[newIndex] = {
+            Id: newIndex,
+            Text: inputIssue,
+            Done: 0
+        }
         this.setState(copyState);
+        fetch(this.domain, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: {
+                'Text': inputIssue
+            }
+        })
+            .then(response => response.json())
+            .then(data => console.log(data));
     }
 
     setIssue(event) {
         let copyState = this.deepCopyState();
-        copyState[event.target.id.substr(0, event.target.id.length - 5)] = !this.state[event.target.id.substr(0, event.target.id.length - 5)];
+        const setId = event.target.id.split(' ')[0];
+        copyState[setId]['Done'] = !this.state[setId]['Done'];
         this.setState(copyState);
     }
 
     deleteIssue(event) {
-        let copyState = this.deepCopyState();
-        delete copyState[event.target.id.substr(0, event.target.id.length - 7)];
+        const deleteId = Number(event.target.id.split(' ')[0]);
+        let copyState = new Object;
+        Object.keys(this.state).forEach(key => {
+            if (this.state[key]['Id'] !== Number(deleteId)) {
+                copyState[key] = new Object;
+                Object.keys(this.state[key]).forEach(okey => {
+                    copyState[key][okey] = this.state[key][okey];
+                });
+            }
+        });
         this.setState(copyState);
     }
 
@@ -55,10 +89,10 @@ class TodoList extends React.Component {
                 </div>
                 <ul className="list-container todo-item">
                     {Object.keys(this.state).map(issue =>
-                        <li className={todoListStyle.issueLine} key={issue}>{issue}
+                        <li className={todoListStyle.issueLine} key={issue}>{this.state[issue].Text}
                             <div className={todoListStyle.iconContainer}>
                                 <img src={deleteIcon} className={todoListStyle.deleteIcon} onClick={this.deleteIssue} id={issue + ' delete'} alt='delete icon' />
-                                <img src={this.state[issue] ? doneIcon : undoneIcon} className={todoListStyle.doneIcon} onClick={this.setIssue} id={issue + ' done'} alt='finish icon' />
+                                <img src={this.state[issue].Done ? doneIcon : undoneIcon} className={todoListStyle.doneIcon} onClick={this.setIssue} id={issue + ' done'} alt='finish icon' />
                             </div>
                         </li>
                     )}
