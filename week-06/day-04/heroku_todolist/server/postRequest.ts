@@ -11,7 +11,7 @@ export const postRequest = server => {
     });
 }
 
-async function insertIssue(body, res) {
+async function insertIssue(body, req, res) {
     let request = JSON.parse(body);
 
     if (!webTools.CHECK_EMPTY(request.text, res)) return;
