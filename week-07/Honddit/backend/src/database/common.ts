@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
 });
 
 const promiseQueryNoInput = (sqlString) => {
-    return new Promise((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
         connection.query(sqlString, (error, result) => {
             if (error) {
                 reject(error);
@@ -20,7 +20,7 @@ const promiseQueryNoInput = (sqlString) => {
 }
 
 const promiseQueryWithInput = (sqlString, input) => {
-    return new Promise((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
         connection.query(sqlString, input, (error, result) => {
             if (error) {
                 reject(error);
