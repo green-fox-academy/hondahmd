@@ -22,10 +22,10 @@ export const listReducer = (state = allState, action) => {
     }
 }
 
-export const postReducer = (state = {}, action) => {
+export const submitReducer = (state = {}, action) => {
     switch (action.type) {
-        case 'GET_ONE_POST':
-            return allState.filter(post => post.id === action.payload.id)[0];
+        case 'SUBMIT_POST':
+            return state;
 
         default:
             return state;
@@ -34,5 +34,5 @@ export const postReducer = (state = {}, action) => {
 
 export default combineReducers({
     listReducer,
-    postReducer
+    submitReducer
 });

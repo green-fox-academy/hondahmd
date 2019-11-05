@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import thunk from 'thunk/listThunk';
 import upVoteIcon from './upvote.png';
 import downVoteIcon from './downvote.png';
+import componentStyle from './components.module.css';
 
 function VoteComponent(props) {
     function handleClick(event) {
@@ -15,10 +16,10 @@ function VoteComponent(props) {
     }
 
     return (
-        <div>
-            <img src={upVoteIcon} onClick={handleClick} alt='upvote'/>
-            <p>{props.score}</p>
-            <img src={downVoteIcon} onClick={handleClick} alt='downvote'/>
+        <div className={componentStyle.voteContainer}>
+            <img src={upVoteIcon} onClick={handleClick} className={componentStyle.voteIcon} alt='upvote'/>
+            <p className={componentStyle.voteScore}>{props.score}</p>
+            <img src={downVoteIcon} onClick={handleClick} className={componentStyle.voteIcon} alt='downvote'/>
         </div>
     )
 }
