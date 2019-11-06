@@ -8,7 +8,7 @@ function submitPost(data) {
     newPost['url'] = data.url;
     
     return async (dispatch) => {
-        let response = await fetch(`${server_location}/posts`, {
+        await fetch(`${server_location}/posts`, {
             'method': 'post',
             'headers': {
                 'Accept': 'application/json',
@@ -16,9 +16,9 @@ function submitPost(data) {
             },
             'body': JSON.stringify(newPost)
         });
-        let data = response.json();
-        console.log(data);
-        dispatch(submitActions.submitPostAction());
+        const response = await fetch(`${server_location}/posts`);
+        const data = await response.json();
+        dispatch(submitActions.submitPostAction(data));
     } 
 }
 

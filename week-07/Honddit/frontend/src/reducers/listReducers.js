@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-let allState = [];
+let initState = [];
 
-export const listReducer = (state = allState, action) => {
+export const listReducer = (state = initState, action) => {
     switch (action.type) {
         case 'GET_ALL_POSTS':
             return [
@@ -16,23 +16,14 @@ export const listReducer = (state = allState, action) => {
             return [
                 ...action.payload.posts
             ]
+        case 'SUBMIT_POST':
+            return [
+                ...action.payload.posts
+            ]
 
         default:
             return state
     }
 }
 
-export const submitReducer = (state = {}, action) => {
-    switch (action.type) {
-        case 'SUBMIT_POST':
-            return state;
-
-        default:
-            return state;
-    }
-}
-
-export default combineReducers({
-    listReducer,
-    submitReducer
-});
+export default listReducer;

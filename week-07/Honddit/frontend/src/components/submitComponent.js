@@ -29,26 +29,26 @@ function SubmitComponent({state, submitPost}) {
     }
 
     return (
-        <form>
-            <div>
-                <label>
-                    <p>title</p>
-                    <input name="title" onChange={handleInput}/>
-                </label>
-                <label>
-                    <p>URL</p>
-                    <input name="url" onChange={handleInput}/>
-                </label>
+        <form className={componentStyle.submitFormContainer}>
+            <div className={componentStyle.submitInputContainer}>
+                <div className={componentStyle.submitTitleContainer}>
+                    <p className={componentStyle.submitFormFont}>TITLE</p>
+                    <input name="title" onChange={handleInput} className={componentStyle.titleInput}/>
+                </div>
+                <div>
+                    <p className={componentStyle.submitFormFont}>URL</p>
+                    <input name="url" onChange={handleInput} className={componentStyle.urlInput}/>
+                </div>
             </div>
             <Link to='/' className={componentStyle.link}>
-                <button name='submit' onClick={handleSubmit}>SUBMIT</button>
+                <button name='submit' onClick={handleSubmit} className={componentStyle.submitFormButton}>SUBMIT</button>
             </Link>
         </form>
     );
 }
 
 const mapStateToProps = state => ({
-    state: state.submitReducer
+    state: state
 });
 
 const mapDispatchToProps = dispatch => ({

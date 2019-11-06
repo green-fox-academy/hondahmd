@@ -25,7 +25,7 @@ function VoteComponent(props) {
 }
 
 const mapStateToProps = state => ({
-    state: state.listReducer
+    state: state
 });
 
 const mapDispatchToProps = dispatch => ({

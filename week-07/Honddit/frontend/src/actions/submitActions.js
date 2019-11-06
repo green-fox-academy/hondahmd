@@ -1,5 +1,8 @@
-const submitPostAction = () => ({
-    type: 'SUBMIT_POST'
+const submitPostAction = (posts) => ({
+    type: 'SUBMIT_POST',
+    payload: {
+        posts
+    }
 });
 
 export default {

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import componentStyle from './components.module.css';
@@ -6,9 +6,10 @@ import thunk from '../thunk/listThunk';
 import OnePostComponent from './onePostComponent';
 
 function ListComponent({state, getAllStories}) {
+
     useEffect(() => {
         getAllStories();
-    }, []);
+    }, [getAllStories]);
 
     return (
         <div className={componentStyle.listContainer}>
@@ -20,7 +21,7 @@ function ListComponent({state, getAllStories}) {
 }
 
 const mapStateToProps = (state) => ({
-    state: state.listReducer
+    state: state
 });
 
 const mapDispatchToProps = dispatch => ({
