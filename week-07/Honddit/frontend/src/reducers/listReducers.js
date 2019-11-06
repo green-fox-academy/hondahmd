@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 let initState = [];
 
 export const listReducer = (state = initState, action) => {
@@ -25,5 +23,20 @@ export const listReducer = (state = initState, action) => {
             return state
     }
 }
+
+// export const backListReducer = (state = initState, action) => {
+//     const actionsMap = new Map();
+//     actionsMap.set('GET_ALL_POSTS', action.payload.posts);
+//     actionsMap.set('UP_VOTE', action.payload.posts);
+//     actionsMap.set('DOWN_VOTE', action.payload.posts);
+//     actionsMap.set('SUBMIT_POST', action.payload.posts);
+//     console.log(action.type);
+
+//     return actionsMap.get(action.type);
+// }
+
+// function returnPosts(posts) {
+//     return posts;
+// }
 
 export default listReducer;
