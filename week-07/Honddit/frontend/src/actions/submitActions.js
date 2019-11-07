@@ -1,7 +1,7 @@
-const submitPostAction = (posts) => ({
+const submitPostAction = (post) => ({
     type: 'SUBMIT_POST',
     payload: {
-        posts
+        post
     }
 });
 

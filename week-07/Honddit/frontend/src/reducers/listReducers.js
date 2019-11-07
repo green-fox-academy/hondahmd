@@ -1,22 +1,15 @@
 let initState = [];
 
 export const listReducer = (state = initState, action) => {
-    switch (action.type) {
-        case 'GET_ALL_POSTS':
-            return getAllPosts(action);
-        case 'VOTE':
-            return vote(state, action);
-        case 'SUBMIT_POST':
-            return [
-                ...action.payload.posts
-            ]
-
-        default:
-            return state
-    }
+    const reducers = new Map();
+    reducers.set('GET_ALL_POSTS', getAllPosts);
+    reducers.set('VOTE', vote);
+    reducers.set('SUBMIT_POST', submitPost);
+    if (reducers.has(action.type)) return reducers.get(action.type)(state, action);
+    else return state;
 }
 
-function getAllPosts(action) {
+function getAllPosts(state, action) {
     return action.payload.posts;
 }
 
@@ -27,6 +20,13 @@ function vote(state, action) {
         else newState.push(post);
     });
     return newState;
+}
+
+function submitPost(state, action) {
+    return [
+        ...state,
+        action.payload.post
+    ]
 }
 
 export default listReducer;

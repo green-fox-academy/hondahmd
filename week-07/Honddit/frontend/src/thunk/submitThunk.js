@@ -8,7 +8,7 @@ function submitPost(data) {
     newPost['url'] = data.url;
     
     return async (dispatch) => {
-        await fetch(`${server_location}/posts`, {
+        const response = await fetch(`${server_location}/posts`, {
             'method': 'post',
             'headers': {
                 'Accept': 'application/json',
@@ -16,9 +16,9 @@ function submitPost(data) {
             },
             'body': JSON.stringify(newPost)
         });
-        const response = await fetch(`${server_location}/posts`);
         const data = await response.json();
-        dispatch(submitActions.submitPostAction(data));
+        if(data[0]) dispatch(submitActions.submitPostAction(data[0]));
+        else alert('submit failed, please submit again!');
     } 
 }
 

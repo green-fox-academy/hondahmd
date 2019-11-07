@@ -9,17 +9,9 @@ function SubmitComponent({state, submitPost}) {
     let [input, setInput] = useState({ title: '', url: '' });
 
     function handleInput(event) {
-        if (event.target.name === 'title') {
-            setInput({
-                ...input,
-                title: event.target.value
-            });
-        } else if (event.target.name === 'url') {
-            setInput({
-                ...input,
-                url: event.target.value
-            });
-        }
+        let newInput = { ...input };
+        newInput[event.target.name] = event.target.value;
+        setInput({ ...newInput });
     }
 
     function handleSubmit(event) {
