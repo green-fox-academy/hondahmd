@@ -1,16 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-function DeletePostComponent() {
+import thunk from 'thunk/listThunk';
+import componentStyle from './components.module.css';
+import deleteIcon from './delete.svg';
 
+function DeletePostComponent(props) {
+    function handleClick(event) {
+        if (event.target.name === 'table') props.deleteOnePost(props.id);
+    }
+
+    return (
+        <div className={componentStyle.deleteTableContainer}>
+            <img src={deleteIcon} className={componentStyle.deleteIcon} onClick={handleClick} name='table' alt='delete table'/>
+        </div>
+    );
 }
 
-// const mapStateToProps = state => ({
-//     state: state
-// });
+const mapStateToProps = state => ({
+    state: state
+});
+ 
+const mapDispatchToProps = dispatch => ({
+    deleteOnePost: (id) => dispatch(thunk.deleteOnePost(id))
+});
 
-// const mapDispatchToProps = dispatch => ({
-//     deleteOnePost: (id) => dispatch()
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(DeletePostComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(DeletePostComponent);

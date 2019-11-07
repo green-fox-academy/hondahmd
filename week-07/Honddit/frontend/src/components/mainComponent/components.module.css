@@ -77,3 +77,23 @@
 .link {
     text-decoration: none;
 }
+
+.postInfoContainer {
+    width: 80%;
+    display: flex;
+}
+
+.deleteContainer {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.deleteTableContainer {
+    
+}
+
+.deleteIcon {
+    width: 40px;
+    height: 40px;
+}

@@ -17,7 +17,6 @@ async function deleteOnePost(req, res) {
         res.status(404).send();
         return;
     }
-    console.log(deletePost);
     await queries.promiseQueryWithInput(`delete from ${gVars.storyTableName} where id=?`, [deleteId]);
     res.status(204).send(deletePost);
 }

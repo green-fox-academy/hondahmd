@@ -24,7 +24,21 @@ function vote(id, operation) {
     }
 }
 
+function deleteOnePost(id) {
+    return async (dispatch) => {
+        const response = await fetch(`${server_location}/posts/${id}`, {
+            'method': 'delete',
+            'headers': {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (response.status === 204) dispatch(listActions.deleteOnePostAction(id));
+        else alert('delete failed, please refresh the page.');
+    }
+}
+
 export default {
     getAllStories,
-    vote
+    vote,
+    deleteOnePost
 }
