@@ -3,12 +3,8 @@ let initState = [];
 export const listReducer = (state = initState, action) => {
     switch (action.type) {
         case 'GET_ALL_POSTS':
-            return [
-                ...action.payload.posts
-            ];
-        case 'UP_VOTE':
-            return vote(state, action);
-        case 'DOWN_VOTE':
+            return getAllPosts(action);
+        case 'VOTE':
             return vote(state, action);
         case 'SUBMIT_POST':
             return [
@@ -18,6 +14,10 @@ export const listReducer = (state = initState, action) => {
         default:
             return state
     }
+}
+
+function getAllPosts(action) {
+    return action.payload.posts;
 }
 
 function vote(state, action) {

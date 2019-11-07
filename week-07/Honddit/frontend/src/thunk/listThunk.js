@@ -19,7 +19,8 @@ function vote(id, operation) {
             }
         });
         const data = await response.json();
-        dispatch(listActions.downVoteAction(data[0]));
+        if (data[0]) dispatch(listActions.voteAction(data[0]));
+        else alert('The post does not exist, please refresh the page.');
     }
 }
 
