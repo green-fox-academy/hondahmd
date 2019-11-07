@@ -8,11 +8,7 @@ import componentStyle from './components.module.css';
 
 function VoteComponent(props) {
     function handleClick(event) {
-        if (event.target.alt === 'upvote') {
-            props.upVote(props.id);
-        } else if (event.target.alt === 'downvote') {
-            props.downvote(props.id);
-        }
+        props.vote(props.id, event.target.alt);
     }
 
     return (
@@ -29,8 +25,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    upVote: (id) => dispatch(thunk.upVote(id)),
-    downvote: (id) => dispatch(thunk.downVote(id))
+    vote: (id, operation) => dispatch(thunk.vote(id, operation))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VoteComponent);

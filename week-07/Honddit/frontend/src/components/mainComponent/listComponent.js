@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import componentStyle from './components.module.css';
-import thunk from '../thunk/listThunk';
+import thunk from '../../thunk/listThunk';
 import OnePostComponent from './onePostComponent';
 
 function ListComponent({state, getAllStories}) {
@@ -14,7 +14,7 @@ function ListComponent({state, getAllStories}) {
     return (
         <div className={componentStyle.listContainer}>
             {state.map(post => 
-                <OnePostComponent post={post} key={'post'  + post.id}/>    
+                <OnePostComponent post={post} key={'post' + post.id}/>    
             )}
         </div>
     );

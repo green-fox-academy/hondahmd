@@ -7,13 +7,9 @@ export const listReducer = (state = initState, action) => {
                 ...action.payload.posts
             ];
         case 'UP_VOTE':
-            return [
-                ...action.payload.posts
-            ]
+            return vote(state, action);
         case 'DOWN_VOTE':
-            return [
-                ...action.payload.posts
-            ]
+            return vote(state, action);
         case 'SUBMIT_POST':
             return [
                 ...action.payload.posts
@@ -24,19 +20,13 @@ export const listReducer = (state = initState, action) => {
     }
 }
 
-// export const backListReducer = (state = initState, action) => {
-//     const actionsMap = new Map();
-//     actionsMap.set('GET_ALL_POSTS', action.payload.posts);
-//     actionsMap.set('UP_VOTE', action.payload.posts);
-//     actionsMap.set('DOWN_VOTE', action.payload.posts);
-//     actionsMap.set('SUBMIT_POST', action.payload.posts);
-//     console.log(action.type);
-
-//     return actionsMap.get(action.type);
-// }
-
-// function returnPosts(posts) {
-//     return posts;
-// }
+function vote(state, action) {
+    let newState = [];
+    state.forEach(post => {
+        if (post.id === action.payload.post.id) newState.push(action.payload.post);
+        else newState.push(post);
+    });
+    return newState;
+}
 
 export default listReducer;

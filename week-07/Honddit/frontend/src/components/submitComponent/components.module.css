@@ -1,0 +1,54 @@
+.link {
+    text-decoration: none;
+}
+
+
+.submitFormContainer {
+    margin: 20px 0px 20px 10px;
+}
+
+.submitInputContainer{
+    background-color: white;
+    padding: 10px;
+    width: 40%;
+    height: 200px;
+}
+
+.submitTitleContainer {
+    width: 100%;
+    height: 50%;
+}
+
+.titleInput {
+    padding-left: 10px;
+    width: 95%;
+    height: 40px;
+    font-size: 24px;
+}
+
+.urlInput {
+    padding-left: 10px;
+    width: 95%;
+    height: 40px;
+    font-size: 24px;
+}
+
+.submitFormFont {
+    font-family: lato;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.submitFormButton {
+    background-color: rgb(65,163,219);
+    color: white;
+    margin-top: 10px;
+    width: 240px;
+    height: 40px;
+    font-family: lato;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

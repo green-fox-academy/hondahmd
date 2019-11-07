@@ -5,30 +5,22 @@ const getAllPostsAction = (posts) => ({
     }
 });
 
-const getOnePostAction = (id) => ({
-    type: "GET_ONE_POST",
-    payload: {
-        id
-    }
-});
-
-const upVoteAction = (posts) => ({
+const upVoteAction = (post) => ({
     type: "UP_VOTE",
     payload: {
-        posts
+        post
     }
 });
 
-const downVoteAction = (posts) => ({
+const downVoteAction = (post) => ({
     type: "DOWN_VOTE",
     payload: {
-        posts
+        post
     }
 })
 
 export default {
     getAllPostsAction,
-    getOnePostAction,
     upVoteAction,
     downVoteAction
 }

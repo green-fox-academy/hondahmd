@@ -5,15 +5,15 @@ import {
     Route
 } from 'react-router-dom';
 
-import componentStyle from './components.module.css';
-import HeaderComponent from './headerComponent';
-import MainComponent from './mainComponent';
-import SubmitComponent from './submitComponent';
+import indexStyle from './indexStyle.module.css';
+import HeaderComponent from './mainComponent/headerComponent';
+import MainComponent from './mainComponent/mainComponent';
+import SubmitComponent from './submitComponent/submitComponent';
 
 function indexComponent() {
     return (
         <>
-            <div className={componentStyle.container}>
+            <div className={indexStyle.container}>
                 <HeaderComponent />
                 <Router>
                     <Switch>

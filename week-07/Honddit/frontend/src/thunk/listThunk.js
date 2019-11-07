@@ -10,36 +10,20 @@ function getAllStories() {
     }
 }
 
-function upVote(id) {
+function vote(id, operation) {
     return async (dispatch) => {
-        await fetch(`${server_location}/posts/${id}/upvote`, {
+        const response = await fetch(`${server_location}/posts/${id}/${operation}`, {
             'method': 'put',
             'headers': {
                 'Content-Type': 'application/json'
             }
         });
-        const response = await fetch(`${server_location}/posts`);
         const data = await response.json();
-        dispatch(listActions.upVoteAction(data));
-    }
-}
-
-function downVote(id) {
-    return async (dispatch) => {
-        await fetch(`${server_location}/posts/${id}/downvote`, {
-            'method': 'put',
-            'headers': {
-                'Content-Type': 'application/json'
-            }
-        });
-        const response = await fetch(`${server_location}/posts`);
-        const data = await response.json();
-        dispatch(listActions.downVoteAction(data));
+        dispatch(listActions.downVoteAction(data[0]));
     }
 }
 
 export default {
     getAllStories,
-    upVote,
-    downVote
+    vote
 }
