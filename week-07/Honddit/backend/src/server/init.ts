@@ -4,6 +4,7 @@ import cors = require('cors');
 import getRequests from './getRequests';
 import postRequests from './postRequests';
 import putRequests from './putRequests';
+import deleteRequests from './deleteRequests';
 
 function initServer() {
     const server = express();
@@ -13,6 +14,7 @@ function initServer() {
     getRequests(server);
     postRequests(server);
     putRequests(server);
+    deleteRequests(server);
     
     console.log('start server');
     server.listen(PORT);
