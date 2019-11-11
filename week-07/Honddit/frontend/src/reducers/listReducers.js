@@ -24,7 +24,6 @@ function vote(state, action) {
 }
 
 function submitPost(state, action) {
-    console.log(action.payload.post);
     return [
         ...state,
         action.payload.post

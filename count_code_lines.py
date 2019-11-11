@@ -2,7 +2,7 @@ import os
 import sys
 
 ext_name = ['.ts', '.js']
-file_dirs = ['./week-01', './week-02']
+file_dirs = ['./week-07/Honddit/frontend/src', './week-07/Honddit/backend/src']
 #file_dirs = ['./week-02/day-04/hanoi/']
 lineCount = 0
 fileCount = 0

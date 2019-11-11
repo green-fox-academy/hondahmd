@@ -5,6 +5,8 @@ import undoneIcon from './undone.svg';
 import doneIcon from './done.svg';
 import todoListStyle from './todolist.module.css';
 
+const _ = require('lodash');
+
 class TodoList extends React.Component {
     constructor() {
         super();
@@ -15,6 +17,11 @@ class TodoList extends React.Component {
         this.deleteIssue = this.deleteIssue.bind(this);
     }
 
+    shouldComponentUpdate() {
+        console.log(this.state);
+        return true;
+    }
+
     componentWillMount() {
         fetch(this.domain)
             .then(response => response.json())
@@ -22,7 +29,7 @@ class TodoList extends React.Component {
     }
 
     deepCopyState() {
-        let copyState = new Object();
+        let copyState = {};
         for (let key in this.state) {
             copyState[key] = this.state[key];
         }
@@ -68,15 +75,8 @@ class TodoList extends React.Component {
 
     deleteIssue(event) {
         const deleteId = Number(event.target.id.split(' ')[0]);
-        let copyState = new Object;
-        Object.keys(this.state).forEach(key => {
-            if (this.state[key]['Id'] !== Number(deleteId)) {
-                copyState[key] = new Object;
-                Object.keys(this.state[key]).forEach(okey => {
-                    copyState[key][okey] = this.state[key][okey];
-                });
-            }
-        });
+        let copyState = _.cloneDeep(this.state);
+        delete copyState[deleteId];
         this.setState(copyState);
     }
 
