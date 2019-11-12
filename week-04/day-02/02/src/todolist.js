@@ -17,11 +17,6 @@ class TodoList extends React.Component {
         this.deleteIssue = this.deleteIssue.bind(this);
     }
 
-    shouldComponentUpdate() {
-        console.log(this.state);
-        return true;
-    }
-
     componentWillMount() {
         fetch(this.domain)
             .then(response => response.json())
@@ -29,11 +24,7 @@ class TodoList extends React.Component {
     }
 
     deepCopyState() {
-        let copyState = {};
-        for (let key in this.state) {
-            copyState[key] = this.state[key];
-        }
-        return copyState;
+        return _.cloneDeep(this.state)
     }
 
     addIssue() {
@@ -43,7 +34,7 @@ class TodoList extends React.Component {
             document.getElementsByClassName('input-box')[0].value = '';
             return;
         }
-        let copyState = this.deepCopyState();
+        let copyState = _.cloneDeep(this.state);
         const keys = Object.keys(this.state);
         const newIndex = Number(keys[keys.length - 1]) + 1;
         copyState[newIndex] = {
@@ -67,7 +58,7 @@ class TodoList extends React.Component {
     }
 
     setIssue(event) {
-        let copyState = this.deepCopyState();
+        let copyState = _.cloneDeep(this.state);
         const setId = event.target.id.split(' ')[0];
         copyState[setId]['Done'] = !this.state[setId]['Done'];
         this.setState(copyState);
@@ -77,6 +68,7 @@ class TodoList extends React.Component {
         const deleteId = Number(event.target.id.split(' ')[0]);
         let copyState = _.cloneDeep(this.state);
         delete copyState[deleteId];
+        console.log(copyState);
         this.setState(copyState);
     }
 
